@@ -56,7 +56,8 @@ export default createStore({
 	},
 	updateCompany({commit}, company){
 		commit('updateCompany', company)
-	}
+	},
+	
   },
   modules: {},
 });
