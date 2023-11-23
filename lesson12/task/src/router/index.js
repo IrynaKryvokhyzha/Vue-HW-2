@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import WorkersView from "../views/WorkersView.vue";
-import WorkerEditor from "@/components/WorkersComponent/WorkerEditor.vue";
-import CandidatesView from "../views/CandidatesView.vue";
-import CandidateEditor from "@/components/CandidateComponent/CandidateEditor.vue";
-import InterviewView from "../views/InterviewView";
+// import WorkersView from "../views/WorkersView.vue";
+// import WorkerEditor from "@/components/WorkersComponent/WorkerEditor.vue";
+// import CandidatesView from "../views/CandidatesView.vue";
+// import CandidateEditor from "@/components/CandidateComponent/CandidateEditor.vue";
+// import InterviewView from "../views/InterviewView";
 
 const routes = [
   {
@@ -15,32 +15,36 @@ const routes = [
   {
     path: "/workers",
     name: "workers",
-    component: WorkersView
+   //  component: WorkersView
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-   //  component: () =>
-   //    import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    component: () =>
+      import(/* webpackChunkName: "workers" */ "../views/WorkersView.vue"),
   },
   {
 	path: "/workerEditor/:workerId?",
 	name: "workerEditor",
-	component: WorkerEditor,
+	component: () =>
+	import(/* webpackChunkName: "workerEditor" */ "@/components/WorkersComponent/WorkerEditor.vue"),
  },
   {
 	path: "/candidates",
 	name: "candidates",
-	component: CandidatesView,
+	component: () =>
+	import(/* webpackChunkName: "candidates" */ "../views/CandidatesView.vue"),
  },
  {
 	path: "/candidateEditor/:candidateId",
 	name: "candidateEditor",
-	component: CandidateEditor,
+	component: () =>
+	import(/* webpackChunkName: "candidateEditor" */ "@/components/CandidateComponent/CandidateEditor.vue"),
  },
  {
 	path: "/interview",
 	name: "interview",
-	component: InterviewView,
+	component: () =>
+	import(/* webpackChunkName: "interview" */ "../views/InterviewView.vue"),
  },
 ];
 
