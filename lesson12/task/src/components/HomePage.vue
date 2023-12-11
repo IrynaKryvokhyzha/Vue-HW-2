@@ -1,12 +1,16 @@
 <template>
-  <div class="hello">
-		<h1>Welcome to our website</h1>
-  </div>
+	<main-masterpage>
+		<div class="hello">
+				<h1>Welcome to our website</h1>
+		</div>
+	</main-masterpage>
 </template>
 
 <script>
+import MainMasterpage from '../masterpages/MainMasterpage.vue';
 export default {
   name: "HomeView",
+  components: { MainMasterpage },
 
 };
 </script>

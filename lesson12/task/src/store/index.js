@@ -6,16 +6,14 @@ import weekDays from "./modules/weekDays";
 
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {
+	namespaced: true,
+
+	modules: {
 	candidates,
 	workers,
 	interviews, 
 	weekDays
-  },
+	},
 });
 
 

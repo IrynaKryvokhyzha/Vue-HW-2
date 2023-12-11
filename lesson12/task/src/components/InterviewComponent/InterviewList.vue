@@ -10,7 +10,7 @@
 			<div>{{interview.workerName}}</div>
 			<div>{{interview.candidateName}}</div>
 			<div>{{interview.weekdayTitle}}</div>
-			<button @click="removeInterview(interview.id)">Delete</button>
+			<v-btn class="button-delete" @click="deleteItem(interview.id)" >Delete</v-btn>
 		</div>
 
 	</div>
@@ -25,13 +25,17 @@ import { mapGetters, mapActions } from 'vuex';
 		computed: {
 			...mapGetters('interviews',['getFilledInterviewsList'])
 		},
+		created () {
+			return this.loadList()
+		},
 		methods: {
-			...mapActions('interviews',['removeInterview'])
+			...mapActions('interviews',['deleteItem', 'loadList'])
 		},
 	}
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/index.scss';
 .interview-cnt {
 display: flex;
 flex-direction: column;

@@ -1,10 +1,11 @@
 <template>
+	<main-masterpage>
 	<div>
 		<div class="interview-cnt">
 			<div>
 				<h3>Workers</h3>
 				<select v-model="interviews.workerId">
-					<option v-for="worker in getWorkersList" :key="worker.id" :value="worker.id" >{{worker.name}}</option>
+					<option v-for="worker in getItemsList" :key="worker.id" :value="worker.id" >{{worker.name}}</option>
 				</select>
 			</div>
 			<div>
@@ -20,52 +21,60 @@
 				</select>
 			</div>
 			<div class="button">
-				<button @click="onAdd">Add</button>
+				<v-btn class="button" @click="onAdd" >Add</v-btn>
 			</div>
 		</div>
 		<div>
 			<interview-list/>
 		</div>
 	</div>
+</main-masterpage>
 </template>
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import MainMasterpage from '../../masterpages/MainMasterpage.vue';
 import InterviewList from './InterviewList.vue';
 	export default {
 		name: 'InterviewPage',
+		components: { InterviewList, MainMasterpage },
+
 		data() {
 			return {
 				interviews: {},
 				
 			}
 		},
-		components: { InterviewList },
 
 		computed: {
-			...mapGetters('interviews', ['getInterviewsList']),
-			...mapGetters('workers', ['getWorkersList']),
+			// ...mapGetters('interviews', ['getItemsList']),
 			...mapGetters('candidates', ['getCandidatesList']),
-			...mapGetters('weekDays', ['getWeekDays'])
-		},
-		methods: {
-			...mapActions('weekDays',['loadWeekDaysData']),
-			...mapActions('interviews',['addInterview']),
-			onAdd(){
-			
-					this.addInterview(this.interviews)
-					this.interviews={}
-		
-			}
+			...mapGetters('workers', ['getItemsList']),
+			...mapGetters('weekDays', ['getWeekDays']),
+
 		},
 		created () {
 			this.loadWeekDaysData();
-			
+			this.loadCandidatesList()
+			this.loadList()
 		},
+		methods: {
+			...mapActions('weekDays',['loadWeekDaysData']),
+			...mapActions('interviews',['addItem', 'loadFilteredData']),
+			...mapActions('candidates',['loadCandidatesList']),
+			...mapActions('workers',['loadList']),
+			onAdd(){
+				this.addItem(this.interviews)
+				this.interviews={}
+		
+			}
+		},
+		
 	}
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/index.scss';
 .interview-cnt{
 	display: flex;
 	justify-content: center;

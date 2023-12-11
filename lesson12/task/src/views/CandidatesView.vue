@@ -1,19 +1,28 @@
 <template>
-	<div>
-<candidate-manager/>
+	<div class="candidates-manager">
+		<CandidateList/>
 	</div>
 </template>
 
 <script>
-import CandidateManager from '@/components/CandidateComponent/CandidateManager.vue';
-	export default {
+import CandidateList from '../components/CandidateComponent/CandidateList'
+export default {
 		name:'CandidatesView',
 		components: {
-			CandidateManager,
+			CandidateList,
+			
+
 		},
+
 	}
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/index.scss';
+.candidates-manager {
+	display: flex;
+	justify-content: center;
+	gap: 100px;
+}
 
 </style>

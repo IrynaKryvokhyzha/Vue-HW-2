@@ -4,7 +4,7 @@
 			Name
 			<input v-model.lazy="worker.name" type="text">
 		</label>
-		<button @click="onAction">{{actionButtonTitle}}</button>
+		<v-btn class="button" @click="onAction" >{{actionButtonTitle}}</v-btn>
 	</div>
 </template>
 
@@ -18,27 +18,33 @@ import { mapGetters ,mapActions} from 'vuex'
 			}
 		},
 		computed: {
-			...mapGetters('workers', ['getWorkerById']),
+			...mapGetters('workers', ['getItemById']),
 			receivedWorkerId(){
 				return this.$route.params.workerId
 			},
 			actionButtonTitle(){
 				return this.receivedWorkerId ? 'Save' : 'Create'
-			}
+			},
+			
 		},
 		created () {
 			if(this.receivedWorkerId)
-			this.worker = {...this.getWorkerById(this.receivedWorkerId)};
+			this.worker = {...this.getItemById(this.receivedWorkerId)};
 		},
 		
 		methods: {
-			...mapActions('workers',['addWorker', 'updateWorker']),
+			...mapActions('workers',['addItem', 'updateItem']),
 			onAction() {
 				if(!this.receivedWorkerId) {
 					if(this.worker.name)
-					this.addWorker(this.worker)
+					this.addItem(this.worker)
 				}
-				else this.updateWorker(this.worker)
+				else this.updateItem({
+					itemId: this.worker.id, 
+					data:{
+						name:this.worker.name
+					}
+				})
 				
 				this.$router.push({
 					name:'workers'
@@ -49,5 +55,5 @@ import { mapGetters ,mapActions} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/assets/style/index.scss';
 </style>

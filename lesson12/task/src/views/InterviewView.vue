@@ -14,5 +14,5 @@ import InterviewPage from '../components/InterviewComponent/InterviewPage.vue';
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/assets/style/index.scss';
 </style>

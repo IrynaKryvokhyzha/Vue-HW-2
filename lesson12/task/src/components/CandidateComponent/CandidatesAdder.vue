@@ -5,7 +5,7 @@
 			Name
 			<input v-model="candidate.name" type="text" >
 		</label>
-		<button @click="onAdd">Add</button>
+		<v-btn class="button" @click="onAdd">Add</v-btn>
 	</div>
 </template>
 
@@ -21,10 +21,10 @@ import {mapActions} from 'vuex'
 	
 		
 		methods: {
-			...mapActions('candidates', ['addCandidate']),
+			...mapActions('candidates', ['addItem']),
 			onAdd(){
 				if(this.candidate.name)
-			this.addCandidate(this.candidate)
+			this.addItem(this.candidate)
 			this.candidate={
 				name:''
 			}
@@ -35,5 +35,6 @@ import {mapActions} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/style/index.scss';
 
 </style>

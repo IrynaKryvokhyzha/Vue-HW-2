@@ -1,52 +1,108 @@
-export default ({
-	namespaced:true,
-	state: {
-		workersList:[
-			{
-				id:1,
-				name:'Johnny Depp',
-			},
-			{
-				id:2,
-				name:'Angelina Jolie',
-			},
-			{
-				id:3,
-				name:'George Clooney',
-			}
-		]
-	},
-	getters: {
-		getWorkersList:({workersList})=>workersList,
-		getWorkerById:(state)=>(workerId)=>state.workersList.find(worker=>worker.id==workerId)
-	},
-	mutations: {
-		removeWorker(state, workerId){
-			state.workersList=state.workersList.filter(worker=>worker.id!==workerId)
-		},
-		addWorker(state, worker){
-			state.workersList.push(worker)
-		},
-		updateWorker(state, workerObj){
-			const workerIndex=state.workersList.findIndex(worker=>worker.id===workerObj.id)
-			state.workersList[workerIndex]=workerObj
-		}
-	},
-	actions: {
-		removeWorker({commit, dispatch}, workerId){
-			commit('removeWorker', workerId)
-			dispatch('interviews/removeInterviewByWorkerId', workerId,
-			{root:true})
-		},
-		addWorker({commit}, worker){
-			commit('addWorker',{
-				id: new Date().getTime(),
-				...worker
-			})
-		},
-		updateWorker({commit},worker){
-			commit('updateWorker', worker)
-		}
-	},
-	modules: {},
- });
+import DbOperations from '../helpers/DbOperations'
+const collectionDB = new DbOperations('workers')
+export default {
+    namespaced: true,
+    state: () => ({
+		workersList: [],
+        loading: false,
+        error: null,
+    }),
+    getters: {
+        isLoading: (state) => state.loading,
+        hasError: (state) => state.error,
+
+        getItemsList: (state) => state.workersList,
+        getItemById: (state) => (itemId) => state.workersList.find(item => item.id == itemId),
+    },
+    mutations: {
+        setItemsList(state, itemsList) {
+            state.workersList = itemsList
+        },
+
+        setLoading(state, value) {
+            state.loading = value
+        },
+        setError(state, error) {
+            state.error = error
+        },
+    },
+    actions: {
+        loadList({ commit }) {
+            commit('setError', null)
+            commit('setLoading', true)
+            collectionDB
+                .loadItemsList()
+                .then((list) => {
+                    commit('setItemsList', list)
+                })
+                .catch((error) => {
+                    commit('setError', error)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        },
+        addItem({ commit, dispatch }, item) {
+            commit('setError', null)
+            commit('setLoading', true)
+            collectionDB
+                .addItem(item)
+                .then(() => {
+                    dispatch('loadList')
+                })
+                .catch((error) => {
+                    commit('setError', error)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        },
+        deleteItem({ commit, dispatch }, itemId) {
+            commit('setError', null)
+            commit('setLoading', true)
+
+            collectionDB
+                .deleteItem(itemId)
+                .then(() => {
+                    dispatch('loadList')
+                })
+                .catch((error) => {
+                    commit('setError', error)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        },
+        updateItem({ commit, dispatch }, { itemId, data }) {
+            commit('setError', null)
+            commit('setLoading', true)
+
+            collectionDB
+                .updateItem(itemId, data)
+                .then(() => {
+                    dispatch('loadList')
+                })
+                .catch((error) => {
+                    commit('setError', error)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        },
+        loadFilteredData({ commit }, { fieldTitle, compareOperator, valueToCompare }) {
+            commit('setError', null)
+            commit('setLoading', true)
+            collectionDB
+                .loadFilteredData(fieldTitle, compareOperator, valueToCompare)
+                .then((list) => {
+                    commit('setItemsList', list)
+                })
+                .catch((error) => {
+                    commit('setError', error)
+                })
+                .finally(() => {
+                    commit('setLoading', false)
+                })
+        },
+    },
+}

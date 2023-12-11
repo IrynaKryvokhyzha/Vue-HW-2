@@ -4,7 +4,7 @@
 			Name
 			<input v-model="candidate.name" type="text">
 		</label>
-		<button @click="onSave">Save</button>
+		<v-btn class="button" @click="onSave">Save</v-btn>
 	</div>
 </template>
 
@@ -19,19 +19,26 @@ import { mapGetters, mapActions } from 'vuex';
 			}
 		},
 		computed: {
-			...mapGetters('candidates', ['getCandidateById']),
+			...mapGetters('candidates', ['getCandidatesId']),
 			receiveCandidateId(){
 				return this.$route.params.candidateId
-			}
+			},
+			
 		},
 		created () {
 			
-			this.candidate ={...this.getCandidateById(this.receiveCandidateId)};
+			this.candidate ={...this.getCandidatesId(this.receiveCandidateId)};
 		},
 		methods: {
-			...mapActions('candidates',['updateCandidate']),
+			...mapActions('candidates',['updateItem']),
+
 			onSave(){
-				this.updateCandidate(this.candidate)
+				this.updateItem({
+					itemId: this.candidate.id,
+					data:{
+						name: this.candidate.name
+					}
+				})
 				this.$router.push({
 					name:'candidates'
 				})
@@ -41,5 +48,5 @@ import { mapGetters, mapActions } from 'vuex';
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/assets/style/index.scss';
 </style>

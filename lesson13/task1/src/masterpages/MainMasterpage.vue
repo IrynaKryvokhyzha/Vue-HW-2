@@ -25,7 +25,9 @@
 		</header>
 
 		
-		 <main class="page"><slot></slot></main>
+		 <main class="page">
+			<slot></slot>
+		</main>
 			<footer class="footer">
 				<div class="footer-content">
 					<div class="footer-dist">Eureka Union School District</div>
