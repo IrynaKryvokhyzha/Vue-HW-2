@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<label>
-			Name
+			{{ $t("titles.name") }}
 			<input v-model="candidate.name" type="text">
 		</label>
-		<v-btn class="button" @click="onSave">Save</v-btn>
+		<v-btn class="button" @click="onSave">{{$t("button.save")}}</v-btn>
 	</div>
 </template>
 

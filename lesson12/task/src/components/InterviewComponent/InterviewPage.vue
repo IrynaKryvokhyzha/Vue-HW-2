@@ -3,25 +3,25 @@
 	<div>
 		<div class="interview-cnt">
 			<div>
-				<h3>Workers</h3>
+				<h3>{{$t("menu.workers")}}</h3>
 				<select v-model="interviews.workerId">
 					<option v-for="worker in getItemsList" :key="worker.id" :value="worker.id" >{{worker.name}}</option>
 				</select>
 			</div>
 			<div>
-				<h3>Candidates</h3>
+				<h3>{{$t("menu.candidates")}}</h3>
 				<select v-model="interviews.candidateId">
 					<option v-for="candidate in getCandidatesList" :key="candidate.id" :value="candidate.id" >{{candidate.name}}</option>
 				</select>
 			</div>
 			<div>
-				<h3>Day</h3>
+				<h3>{{$t("weekdays")}}</h3>
 				<select v-model="interviews.weekdayId">
 					<option v-for="day in getWeekDays" :key="day.id" :value="day.id" >{{day.title}}</option>
 				</select>
 			</div>
 			<div class="button">
-				<v-btn class="button" @click="onAdd" >Add</v-btn>
+				<v-btn class="button" @click="onAdd" >{{$t("button.add")}}</v-btn>
 			</div>
 		</div>
 		<div>
@@ -77,7 +77,7 @@ import InterviewList from './InterviewList.vue';
 @import '@/assets/style/index.scss';
 .interview-cnt{
 	display: flex;
-	justify-content: center;
+
 	gap: 10px;
 	padding: 30px;
 

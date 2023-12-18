@@ -1,7 +1,7 @@
 <template>
 	<main-masterpage>
 		<div class="hello">
-				<h1>Welcome to our website</h1>
+				<h1>{{$t("messages")}}</h1>
 		</div>
 	</main-masterpage>
 </template>
@@ -18,7 +18,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 h1{
-	text-align: center;
+	padding-left: 20px;
 
 }
 </style>

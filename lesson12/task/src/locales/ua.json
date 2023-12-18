@@ -1,0 +1,33 @@
+{
+	"menu": {
+		"home": "Головна",
+		"workers": "Працівники",
+		"candidates": "Кандидати",
+		"interviews": "Інтерв'ю",
+		"currentLanguage": "Поточна мова"
+	},
+	"weekdays":"День",
+	"messages":"Вітаємо на нашому сайті",
+
+	"actionTitles": {
+		"login": "Увійти",
+		"logout": "Вийти",
+		"addTask": "Додати задачу"
+	},
+	"button": {
+		"save": "Зберегти",
+		"edit": "Змінити",
+		"delete": "Видалити",
+		"addWorker": "Додати працівника",
+		"add": "Додати",
+		"create": "Створити"
+	
+	},
+	"titles":{
+		"name": "Ім'я",
+		"addCandidate": "Додати кандидата",
+		"scheduledInterviews": "Заплановані інтерв'ю"
+
+	}
+}
+

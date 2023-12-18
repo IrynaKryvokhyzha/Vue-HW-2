@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<h3>Add candidate</h3>
+		<h3>{{ $t("titles.addCandidate") }}</h3>
 		<label>
-			Name
+			{{ $t("titles.name") }}
 			<input v-model="candidate.name" type="text" >
 		</label>
-		<v-btn class="button" @click="onAdd">Add</v-btn>
+		<v-btn class="button" @click="onAdd">{{$t("button.add")}}</v-btn>
 	</div>
 </template>
 
@@ -36,5 +36,7 @@ import {mapActions} from 'vuex'
 
 <style lang="scss" scoped>
 @import '@/assets/style/index.scss';
-
+h3{
+	margin-bottom: 15px;
+}
 </style>

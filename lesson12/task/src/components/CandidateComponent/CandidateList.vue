@@ -1,26 +1,29 @@
 <template>
-	<candidates-masterpage>
-			<div>
-				<h2>Candidates:</h2>
+	<main-masterpage>
+			<div class="candidates-container">
+				<h2>{{$t("menu.candidates")}}:</h2>
 				<div v-for="candidate in getCandidatesList" :key="candidate.id" class="candidates">
-					<span>{{candidate.name}}</span>
-					<v-btn class="button" @click="onEdit(candidate.id)">Edit</v-btn>
-					<v-btn class="button-delete" @click="deleteItem(candidate.id)">Delete</v-btn>
+					<div>{{candidate.name}}</div>
+					<div>
+						<v-btn class="button" @click="onEdit(candidate.id)">{{$t("button.edit")}}</v-btn>
+						<v-btn class="button-delete" @click="deleteItem(candidate.id)">{{$t("button.delete")}}</v-btn>
+					</div>
+					
 				</div>
 			</div>
 			<candidates-adder />
-		</candidates-masterpage>
+		</main-masterpage>
 </template>
 
 <script>
-import CandidatesMasterpage from '@/masterpages/CandidatesMasterpage.vue'
+import MainMasterpage from '@/masterpages/MainMasterpage.vue'
 import CandidatesAdder from './CandidatesAdder.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 	export default {
     name: 'CandidateList',
 	 components: {
-			CandidatesMasterpage,
+			MainMasterpage,
 			CandidatesAdder,
 		},
     computed: {
@@ -46,11 +49,19 @@ import {mapGetters, mapActions} from 'vuex'
 
 <style lang="scss" scoped>
 @import '@/assets/style/index.scss';
+.candidates-container{
+	display: flex;
+	flex-direction: column;
+	max-width: 600px;
+	margin-bottom: 25px;
+}
 .candidates{
+	display: flex;
+	justify-content: space-between;
 	font-size: 18px;
 	padding-bottom: 10px;
-	text-align: center;
-  
+
+
 }
 span{
 	padding-right: 50px;

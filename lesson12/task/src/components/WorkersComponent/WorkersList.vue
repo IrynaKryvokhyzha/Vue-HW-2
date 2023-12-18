@@ -1,13 +1,19 @@
 <template>
 	<main-masterpage >
 		<div class="worker-container">
-			<h2>Workers:</h2>
+			<h2 class="title">{{$t("menu.workers")}}:</h2>
 			<div v-for="worker in getItemsList" :key="worker.id" class="worker" >
-				<span >{{ worker.name }}</span>
-				<v-btn class="button" @click="onEdit(worker.id)">Edit</v-btn>
-				<v-btn class="button-delete" @click="deleteItem(worker.id)">Delete</v-btn>
+				<div>{{ worker.name }}</div>
+				<div>
+					<v-btn class="button" @click="onEdit(worker.id)">{{$t("button.edit")}}</v-btn>
+					<v-btn class="button-delete" @click="deleteItem(worker.id)">{{$t("button.delete")}}</v-btn>
+				</div>
 			</div>
-			<router-link :to="{name: 'workerEditor'}" class="add-button">Add worker</router-link>
+			<div>
+				<v-btn class="button" @click="onAdd">{{$t("button.addWorker")}}</v-btn>
+			</div>
+			
+			<!-- <router-link :to="{name: 'workerEditor'}" class="add-button">{{$t("button.addWorker")}}</router-link> -->
 		</div>
 	</main-masterpage>
 </template>
@@ -22,7 +28,8 @@ import MainMasterpage from '@/masterpages/MainMasterpage.vue';
 			MainMasterpage	,
 		},
 		computed: {
-			...mapGetters('workers', ['getItemsList'])
+			...mapGetters('workers', ['getItemsList']),
+			
 		},
 		created () {
 			this.loadList()
@@ -36,6 +43,12 @@ import MainMasterpage from '@/masterpages/MainMasterpage.vue';
 						workerId: workersId
 					}
 				})
+			},
+			onAdd(){
+				this.$router.push({
+					name:'workerEditor',
+					
+				})
 			}
 		},
 	}
@@ -44,21 +57,23 @@ import MainMasterpage from '@/masterpages/MainMasterpage.vue';
 <style lang="scss" scoped>
 @import '@/assets/style/index.scss';
 .worker-container {
-max-height: 100%;
+display: flex;
+flex-direction: column;
+padding-left: 20px;
+max-width: 600px;
+}
+.title{
+	margin-bottom: 10px;
 }
 .worker{
 	font-size: 18px;
+	display: flex;
+	justify-content: space-between;
 	padding-bottom: 10px;
 }
 span{
 	padding-right: 50px;
 }
 
-.add-button {
-	text-decoration: none;
-	color:rgb(76, 74, 74);
-	border: 2px solid #2c3e50;
-	padding: 5px;
-	border-radius: 5px;
-}
+
 </style>

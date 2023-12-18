@@ -20,9 +20,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/style/index.scss';
 .candidates-manager {
-	display: flex;
-	justify-content: center;
-	gap: 100px;
+padding-left: 20px;
+
 }
 
 </style>

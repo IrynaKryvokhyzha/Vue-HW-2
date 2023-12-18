@@ -1,0 +1,31 @@
+{
+	"menu": {
+		"home": "Home page",
+		"workers": "Workers",
+		"candidates": "Candidates",
+		"interviews": "Interviews",
+		"currentLanguage": "Current language"
+	},
+	"weekdays":"Day",
+	"messages":"Welcome to our website",
+	"actionTitles": {
+		"login": "Login",
+		"logout": "Logout",
+		"addTask": "Add task"
+	},
+	"button": {
+		"save": "Save",
+		"edit": "Edit",
+		"delete": "Delete",
+		"addWorker": "Add worker",
+		"add": "Add",
+		"create": "Create",
+		"actionButton":"Add"
+	},
+	"titles":{
+		"name": "Name",
+		"addCandidate": "Add candidate",
+		"scheduledInterviews": "Scheduled interviews"
+	}
+
+}

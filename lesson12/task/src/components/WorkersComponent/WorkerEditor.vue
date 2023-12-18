@@ -1,10 +1,10 @@
 <template>
-	<div>
+	<div class="edit-container">
 		<label>
-			Name
+			{{$t("titles.name")}}
 			<input v-model.lazy="worker.name" type="text">
 		</label>
-		<v-btn class="button" @click="onAction" >{{actionButtonTitle}}</v-btn>
+		<v-btn class="button" @click="onAction" >{{languageTitleChange}}</v-btn>
 	</div>
 </template>
 
@@ -14,7 +14,7 @@ import { mapGetters ,mapActions} from 'vuex'
 		name: 'WorkerEditor',
 		data() {
 			return {
-				worker: {}
+				worker: {},
 			}
 		},
 		computed: {
@@ -25,7 +25,15 @@ import { mapGetters ,mapActions} from 'vuex'
 			actionButtonTitle(){
 				return this.receivedWorkerId ? 'Save' : 'Create'
 			},
-			
+			languageTitleChange(){
+				let t
+				if(this.actionButtonTitle === 'Save') t = this.$t('button.save')
+				if(this.actionButtonTitle === 'Create') t = this.$t('button.add')
+				return t
+				
+			}
+		
+		
 		},
 		created () {
 			if(this.receivedWorkerId)
@@ -54,6 +62,7 @@ import { mapGetters ,mapActions} from 'vuex'
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import '@/assets/style/index.scss';
+
 </style>
