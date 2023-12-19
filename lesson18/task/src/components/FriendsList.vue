@@ -29,7 +29,8 @@ import FriendAdder from './FriendAdder.vue'
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '../assets/style/index.scss';
 .friends-list{
 	display: flex;
 	flex-direction: column;

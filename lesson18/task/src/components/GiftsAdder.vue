@@ -33,7 +33,8 @@ import { useGiftsStore } from '../store/gifts'
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+@import '../assets/style/index.scss';
 label{
 	font-size: 18px;
 	font-weight: bold;

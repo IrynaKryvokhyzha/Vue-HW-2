@@ -29,7 +29,8 @@ import GiftsAdder from './GiftsAdder.vue'
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+@import '../assets/style/index.scss';
 .gift-list {
 	display: flex;
 	flex-direction: column;

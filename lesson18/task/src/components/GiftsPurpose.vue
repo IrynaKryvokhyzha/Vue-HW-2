@@ -55,7 +55,7 @@ import PurposeList from './PurposeList.vue'
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/style/index.scss';
 .purpose-container{
 	display: flex;
